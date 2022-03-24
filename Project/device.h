@@ -43,7 +43,7 @@ extern "C" {
 
 /* -------------------------------------------------------------------------- */
 /* --- PUBLIC MACROS & PREPROCESSOR CONSTANTS ------------------------------- */
-#define VERSION "01.00.00"
+#define VERSION "01.00.01"
 
 #ifdef DEBUG
 #define SOFT_VERSION ( "D" VERSION )

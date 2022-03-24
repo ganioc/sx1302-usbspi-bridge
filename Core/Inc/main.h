@@ -75,7 +75,8 @@ void Error_Handler(void);
 #define PPS_Pin GPIO_PIN_4
 #define PPS_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
-
+#define LED_PA15_Pin       GPIO_PIN_15
+#define LED_PA15_GPIO_PORT GPIOA
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

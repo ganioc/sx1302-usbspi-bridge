@@ -27,7 +27,8 @@
 /* Configure GPIO                                                             */
 /*----------------------------------------------------------------------------*/
 /* USER CODE BEGIN 1 */
-
+int LED_PA15_Dim = 100;
+int LED_PA15_Keep = 200;
 /* USER CODE END 1 */
 
 /** Configure pins as 
@@ -56,7 +57,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(SX1261_CS_GPIO_Port, SX1261_CS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PAPin PAPin PAPin PAPin */
-  GPIO_InitStruct.Pin = POWER_EN_MCU_Pin|SX1302_RESET_MCU_Pin|SX1302_CS_Pin|SX1261_RESET_Pin;
+  GPIO_InitStruct.Pin = POWER_EN_MCU_Pin|SX1302_RESET_MCU_Pin|SX1302_CS_Pin|SX1261_RESET_Pin|LED_PA15_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -84,7 +85,12 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
-
+void LED_PA15_On(){
+	HAL_GPIO_WritePin(LED_PA15_GPIO_PORT, LED_PA15_Pin, GPIO_PIN_RESET);
+}
+void LED_PA15_Off(){
+	HAL_GPIO_WritePin(LED_PA15_GPIO_PORT, LED_PA15_Pin, GPIO_PIN_SET);
+}
 /* USER CODE END 2 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

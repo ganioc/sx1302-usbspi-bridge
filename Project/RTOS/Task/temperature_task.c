@@ -39,6 +39,7 @@
 
 #include "stts751.h"
 #include "custom_mems_conf.h"
+#include "gpio.h"
 
 /* -------------------------------------------------------------------------- */
 /* --- CONSTANTS, TYPES, ENUMS & STRUCTS ------------------------------------ */
@@ -51,9 +52,12 @@
 
 /* -------------------------------------------------------------------------- */
 /* --- VARIABLES ------------------------------------------------------------ */
-static STTS751_Object_t stts751;
+/*static STTS751_Object_t stts751;*/
 static float            temperature        = 0.0;
 static bool             temperature_status = false;
+
+extern int LED_PA15_Dim;
+extern int LED_PA15_Keep;
 
 /* -------------------------------------------------------------------------- */
 /* ---  FUNCTIONS DECLARATION ----------------------------------------------- */
@@ -67,7 +71,7 @@ void temperature_task__start( void* argument )
 {
     UNUSED( argument );  // Task withtout argument - avoid warning
 
-    uint8_t count_fail = 0;
+    /*uint8_t count_fail = 0;
 
     STTS751_IO_t cfg_stts751 = {
         .Init     = CUSTOM_STTS751_0_I2C_Init,
@@ -77,12 +81,21 @@ void temperature_task__start( void* argument )
         .WriteReg = CUSTOM_STTS751_0_I2C_WriteReg,
         .ReadReg  = CUSTOM_STTS751_0_I2C_ReadReg,
         .GetTick  = NULL,
-    };
+    };*/
 
     temperature_status = false;
     for( ;; )
     {
-        if( temperature_status == false )
+    	// turn LED off
+    	LED_PA15_Off();
+    	vTaskDelay( pdMS_TO_TICKS( LED_PA15_Dim ) );
+    	// turn LED on
+    	LED_PA15_On();
+    	vTaskDelay( pdMS_TO_TICKS( LED_PA15_Keep ) );
+
+
+        /*
+    	if( temperature_status == false )
         {
             //  Try the 2 temperature sensor reference
             if( cfg_stts751.Address == ST_TS751_ADDR2 )
@@ -153,7 +166,8 @@ void temperature_task__start( void* argument )
             }
 
             vTaskDelay( pdMS_TO_TICKS( TEMPERATURE_GET_PERIOD_MS ) );
-        }
+        }*/
+
     }
 }
 

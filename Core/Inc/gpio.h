@@ -38,7 +38,8 @@
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void LED_PA15_On();
+void LED_PA15_Off();
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
