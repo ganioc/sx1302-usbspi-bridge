@@ -1,0 +1,11 @@
+﻿.vscode
+*.clang-format
+Debug
+*.launch
+Release
+.settings
+Drivers/
+MEMS/
+Middlewares/
+Includes/
+
